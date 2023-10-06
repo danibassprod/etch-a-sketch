@@ -25,8 +25,6 @@ buttonContainer.classList.add('button-container')
 buttonContainer.style.display = 'flex'
 buttonContainer.style.flexDirection = 'column'
 buttonContainer.style.justifyContent = 'center'
-// buttonContainer.style.width = '50px'
-// buttonContainer.style.height = '50px'
 container.appendChild(buttonContainer)
 
 const easTitle = document.createElement('div')
@@ -46,20 +44,6 @@ gridButton.style.borderRadius = '5px'
 gridButton.style.marginBottom = '15px'
 buttonContainer.appendChild(gridButton)
 
-const clearGridButton = document.createElement('button')
-clearGridButton.classList.add('clear-grid-button')
-clearGridButton.textContent = 'Clear Grid'
-clearGridButton.style.padding = '10px'
-clearGridButton.style.backgroundColor = 'white'
-clearGridButton.style.borderWidth = '0'
-clearGridButton.style.borderRadius = '5px'
-buttonContainer.appendChild(clearGridButton)
-
-clearGridButton.addEventListener('click', function(){
-    let currentDivs = document.querySelectorAll('.child')
-    currentDivs.forEach(div => div.style.backgroundColor = 'white')
-})
-
 gridButton.addEventListener('click', () => grid = prompt('Enter a number bellow 100', 16))
 gridButton.addEventListener('click', function() {
     if (grid === null) {
@@ -77,8 +61,45 @@ gridButton.addEventListener('click', function() {
             userGrid()
         }
     }
-    
 })
+
+const clearGridButton = document.createElement('button')
+clearGridButton.classList.add('clear-grid-button')
+clearGridButton.textContent = 'Clear Grid'
+clearGridButton.style.padding = '10px'
+clearGridButton.style.backgroundColor = 'white'
+clearGridButton.style.borderWidth = '0'
+clearGridButton.style.borderRadius = '5px'
+clearGridButton.style.marginBottom = '15px'
+buttonContainer.appendChild(clearGridButton)
+
+clearGridButton.addEventListener('click', function(){
+    let currentDivs = document.querySelectorAll('.child')
+    currentDivs.forEach(div => div.style.backgroundColor = 'white')
+})
+
+function getRandomColor(){
+    const RED = Math.random() * 255
+    const GREEN = Math.random() * 255
+    const BLUE = Math.random() * 255
+    return randomColor = `rgb(${Math.round(RED)}, ${Math.round(GREEN)}, ${Math.round(BLUE)})`
+}
+
+const funnyButton = document.createElement('button')
+funnyButton.classList.add('funny-button')
+funnyButton.textContent = 'Want some fun?'
+funnyButton.style.padding = '10px'
+funnyButton.style.backgroundColor = 'white'
+funnyButton.style.borderWidth = '0'
+funnyButton.style.borderRadius = '5px'
+buttonContainer.appendChild(funnyButton)
+
+funnyButton.addEventListener('click', function(){
+    const currentDivs = document.querySelectorAll('.child')
+    currentDivs.forEach(div => div.addEventListener('mouseover', function(){
+        this.style.backgroundColor = getRandomColor()
+    })
+)})
 
 const gridContainer = document.createElement('div')
 gridContainer.classList.add('gridContainer')

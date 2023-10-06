@@ -6,35 +6,62 @@ body.style.margin = '0'
 body.style.width = '100%'
 body.style.height = '100%'
 body.style.display = 'flex'
-body.style.flexGrow = '1'
-body.style.flexDirection = 'column'
 body.style.justifyContent = 'center'
 body.style.alignItems = 'center'
 
-const button = document.createElement('button')
-button.textContent = 'Grid'
-button.style.padding = '10px'
-button.style.borderWidth = '0'
-button.style.borderRadius = '5px'
-button.style.marginBottom = '30px'
-body.appendChild(button)
+const container = document.createElement('div')
+container.classList.add('container')
+container.style.backgroundColor = '#ececec'
+container.style.borderRadius = '30px'
+container.style.display = 'flex'
+container.style.justifyContent = 'center'
+container.style.alignItems = 'center'
+container.style.gap = '175px'
+container.style.padding = '50px 180px 50px 180px'
+body.appendChild(container)
 
-// const clearButton = document.createElement('button')
-// clearButton.textContent = 'Clear grid'
-// clearButton.style.padding = '10px'
-// clearButton.style.borderWidth = '0'
-// clearButton.style.borderRadius = '5px'
-// clearButton.style.marginBottom = '30px'
-// body.appendChild(clearButton)
+const buttonContainer = document.createElement('div')
+buttonContainer.classList.add('button-container')
+buttonContainer.style.display = 'flex'
+buttonContainer.style.flexDirection = 'column'
+buttonContainer.style.justifyContent = 'center'
+// buttonContainer.style.width = '50px'
+// buttonContainer.style.height = '50px'
+container.appendChild(buttonContainer)
 
-// button.addEventListener('click', function() {
-//     document.querySelectorAll('.child').forEach(function(){
-//         this.style.backgroundColor = 'white'
-//     })
-// })
+const easTitle = document.createElement('div')
+easTitle.classList.add('title')
+easTitle.textContent = 'Etch a Sketch!'
+easTitle.style.fontSize = '25px'
+easTitle.style.marginBottom = '45px'
+buttonContainer.appendChild(easTitle)
 
-button.addEventListener('click', () => grid = prompt('Enter a number bellow 100', 16))
-button.addEventListener('click', function() {
+const gridButton = document.createElement('button')
+gridButton.classList.add('grid-button')
+gridButton.textContent = 'Grid'
+gridButton.style.padding = '10px'
+gridButton.style.backgroundColor = 'white'
+gridButton.style.borderWidth = '0'
+gridButton.style.borderRadius = '5px'
+gridButton.style.marginBottom = '15px'
+buttonContainer.appendChild(gridButton)
+
+const clearGridButton = document.createElement('button')
+clearGridButton.classList.add('clear-grid-button')
+clearGridButton.textContent = 'Clear Grid'
+clearGridButton.style.padding = '10px'
+clearGridButton.style.backgroundColor = 'white'
+clearGridButton.style.borderWidth = '0'
+clearGridButton.style.borderRadius = '5px'
+buttonContainer.appendChild(clearGridButton)
+
+clearGridButton.addEventListener('click', function(){
+    let currentDivs = document.querySelectorAll('.child')
+    currentDivs.forEach(div => div.style.backgroundColor = 'white')
+})
+
+gridButton.addEventListener('click', () => grid = prompt('Enter a number bellow 100', 16))
+gridButton.addEventListener('click', function() {
     if (grid === null) {
         return
     } else {
@@ -53,15 +80,16 @@ button.addEventListener('click', function() {
     
 })
 
-const container = document.createElement('div')
-container.classList.add('container')
-container.style.width = '400px'
-container.style.height = '400px'
-container.style.display = 'flex'
-container.style.flexWrap = 'wrap'
-container.style.flex = '0 0 auto'
-container.style.border = '1px solid black'
-body.appendChild(container)
+const gridContainer = document.createElement('div')
+gridContainer.classList.add('gridContainer')
+gridContainer.style.backgroundColor = 'white'
+gridContainer.style.width = '400px'
+gridContainer.style.height = '400px'
+gridContainer.style.display = 'flex'
+gridContainer.style.flexWrap = 'wrap'
+gridContainer.style.flex = '0 0 auto'
+gridContainer.style.border = '1px solid black'
+container.appendChild(gridContainer)
 
 let divChild;
 
@@ -75,9 +103,9 @@ function userGrid() {
         divChild.classList.add('child', i)
         divChild.style.flex = '0 0 auto'
         divChild.style.boxSizing = 'boder-box'
-        divChild.style.width = `${container.clientWidth / grid}px`
-        divChild.style.height = `${container.clientWidth / grid}px`
-        container.appendChild(divChild)
+        divChild.style.width = `${gridContainer.clientWidth / grid}px`
+        divChild.style.height = `${gridContainer.clientWidth / grid}px`
+        gridContainer.appendChild(divChild)
     }
     const newChilds = document.querySelectorAll('.child')
     newChilds.forEach(div => div.addEventListener('mouseover', function() {
@@ -93,7 +121,7 @@ for (let i = 1; i <= grid * grid; i++) {
     divChild.style.boxSizing = 'boder-box'
     divChild.style.width = '25px'
     divChild.style.height = '25px'
-    container.appendChild(divChild)
+    gridContainer.appendChild(divChild)
 }
 
 const allChilds = document.querySelectorAll('.child')

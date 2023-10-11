@@ -131,7 +131,6 @@ function userGrid() {
     const newChilds = document.querySelectorAll('.child')
     newChilds.forEach(div => div.addEventListener('mouseover', function() {
         this.style.backgroundColor = 'black'
-        console.log(this.className)
     }))
 }
 
